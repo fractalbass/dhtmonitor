@@ -9,7 +9,9 @@ Group Inc.  The purpose of this application is to provide a near-real-time monit
  "getting" the data for reporting purposes.  Finally, the application includes an Angular.js single-page web application
  that is served from the Amazon server, and calls back to the RESTful endpoints for the purposes of data visualization
  and simple analysis.
-
+ 
+ <script src="https://www.gliffy.com/diagramEmbed.js" type="text/javascript"></script><script type="text/javascript">gliffy_did="9944981";embedGliffy();</script>
+ 
  Generally, the project will attempt to following these guidelines where ever possible (and practical.)
 
 1.  Use a TDD based approach as much as possible.
