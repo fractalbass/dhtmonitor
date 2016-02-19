@@ -39,3 +39,15 @@ Build and Deploy Approach
 github
 Jenkins on AWS
 
+=====
+
+Stuff I did to make this work.
+1.  Install java and intellij on my mac
+2.  Install Gradle on my mac
+3.  Install lazybones on my mac
+4.  Create an spring boot actuator project with lazybones
+5.  Write a unit test and integration test and get 'em to pass on my mac
+6.  Setup a github repo, and push the code to the repo
+7.  Fire up an aws instance and install java and jenkins (see https://blogs.aws.amazon.com/application-management/post/Tx32RHFZHXY6ME1/Set-up-a-build-pipeline-with-Jenkins-and-Amazon-ECS)
+8.  Confirm that jenkins is running on port 8080 in aws...
+

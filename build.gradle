@@ -2,7 +2,7 @@ apply plugin: "groovy"
 apply plugin: "spring-boot"
 apply plugin: "application"
 
-sourceCompatibility = "1.6"
+sourceCompatibility = "1.8"
 targetCompatibility = "1.8"
 
 version = "${version}"
