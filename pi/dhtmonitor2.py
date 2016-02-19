@@ -28,8 +28,7 @@ iterations = 445
 speed = 1
 
 def run():
-  ###while True:
-    ### Assume
+    GPIO.cleanup()
     ts = time.time()
     st = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
     humidity, temperature = Adafruit_DHT.read_retry( Adafruit_DHT.DHT22, pin )
@@ -42,9 +41,10 @@ def run():
           humid_resource.write(humidity)
           Blink(int(iterations),float(speed))
 
-        except Exception:
+        except Exception as e:
           ## Process exception here
-          print "Error while writing to Beebotte"
+          s = str(e)
+          print "Error while writing to Beebotte {0}".format(s)
     else:
         print "Failed to get reading. Try again!"
 
