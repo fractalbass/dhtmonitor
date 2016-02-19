@@ -10,7 +10,9 @@ Group Inc.  The purpose of this application is to provide a near-real-time monit
  that is served from the Amazon server, and calls back to the RESTful endpoints for the purposes of data visualization
  and simple analysis.
  
- <script src="https://www.gliffy.com/diagramEmbed.js" type="text/javascript"></script><script type="text/javascript">gliffy_did="9944981";embedGliffy();</script>
+ Please refer to the following diagram for a general overview of the project:
+ 
+ http://www.gliffy.com/go/publish/image/9944981/L.png
  
  Generally, the project will attempt to following these guidelines where ever possible (and practical.)
 
