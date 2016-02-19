@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.phg.dhtmonitor.model.modeltest" tests="1" skipped="0" failures="0" errors="0" timestamp="2016-02-19T16:57:03" hostname="Miles-2015-Mac-Book-Pro.local" time="0.001">
+  <properties/>
+  <testcase name="dhtTest" classname="com.phg.dhtmonitor.model.modeltest" time="0.001"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

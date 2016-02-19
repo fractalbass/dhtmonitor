@@ -7,7 +7,7 @@ targetCompatibility = "1.8"
 
 version = "${version}"
 group = "${group}"
-mainClassName = "sample.SampleApplication"
+mainClassName = "com.phg.dhtmonitor.DhtMonitorApplication"
 
 buildscript {
     ext {
