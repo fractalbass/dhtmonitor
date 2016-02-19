@@ -9,7 +9,7 @@ import spock.lang.Specification
 
 @ContextConfiguration(loader = SpringApplicationContextLoader, classes = DhtMonitorApplication)
 @WebAppConfiguration
-@IntegrationTest
+@IntegrationTest("server.port:8888")
 class PrimeSpec extends Specification {
 
     @Value('${local.server.port}')
@@ -17,7 +17,7 @@ class PrimeSpec extends Specification {
 
     def "It should say hello"() {
         expect:
-        def client = new RESTClient("http://localhost:8080/dhtmonitor/")
+        def client = new RESTClient("http://localhost:8888/dhtmonitor/")
         def resp = client.get(path : "")
         assert(resp.status==200)
     }
