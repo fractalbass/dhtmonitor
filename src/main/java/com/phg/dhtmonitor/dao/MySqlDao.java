@@ -64,9 +64,11 @@ public class MySqlDao {
         try {
             Statement stmt = conn.createStatement();
             ResultSet rs = stmt.executeQuery( "SELECT temperature, humidity, serverts from DHT order by id;");
-            while ( rs.next() ) {
+            int i=0;
+            while ( (rs.next()) && (i<count) ) {
                 Dht dht = new Dht(rs.getFloat(1), rs.getFloat(2), rs.getLong(3));
                 d.add(dht);
+                i++;
             }
         } catch(Exception exp) {
             System.out.println("Error getting data.");
