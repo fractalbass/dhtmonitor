@@ -15,10 +15,10 @@ class PrimeSpec extends Specification {
     @Value('${local.server.port}')
     int port;
 
-    def "It should say hello"() {
+    def "It should have a valid endpoint"() {
         expect:
         def client = new RESTClient("http://localhost:8888/dhtmonitor/")
-        def resp = client.get(path : "")
+        def resp = client.get(path : "dht")
         assert(resp.status==200)
     }
 }

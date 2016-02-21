@@ -1,9 +1,19 @@
 package com.phg.dhtmonitor.model;
 
+import org.springframework.stereotype.Component;
+
 /**
  * Created by milesporter on 2/19/16.
  */
+
+@Component
 public class Dht {
+
+    public Dht(float temp, float hmdt) {
+        this.timestamp = System.currentTimeMillis();
+        this.humidity = hmdt;
+        this.temperature = temp;
+    }
 
     public float getHumidity() {
         return humidity;
@@ -17,20 +27,8 @@ public class Dht {
         return timestamp;
     }
 
-    public void setHumidity(float humidity) {
-        this.humidity = humidity;
-    }
-
-    public void setTemperature(float temperature) {
-        this.temperature = temperature;
-    }
-
-    public void setTimestamp(long timestamp) {
-        this.timestamp = timestamp;
-    }
-
-    private float humidity;
-    private float temperature;
-    private long timestamp;
+    private final float humidity;
+    private final float temperature;
+    private final long timestamp;
 
 }

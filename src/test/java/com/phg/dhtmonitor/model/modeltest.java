@@ -11,10 +11,8 @@ public class modeltest {
     @Test
     public void dhtTest() {
 
-        Dht dht = new Dht();
-        dht.setHumidity(30);
-        dht.setTemperature(20);
-        assertTrue(dht.getHumidity()==30f);
-        assertTrue(dht.getTemperature()==20f);
+        Dht dht = new Dht(30,20);
+        assertTrue(dht.getHumidity()==20f);
+        assertTrue(dht.getTemperature()==30f);
     }
 }

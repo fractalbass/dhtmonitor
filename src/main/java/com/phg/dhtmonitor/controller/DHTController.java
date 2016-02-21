@@ -1,7 +1,9 @@
 package com.phg.dhtmonitor.controller;
 
-import org.springframework.stereotype.Controller;
+import com.phg.dhtmonitor.model.*;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -10,9 +12,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class DHTController {
 
-    @RequestMapping("/")
-    public String index() {
-        return "Greetings from Spring Boot!";
+    @RequestMapping("dht")
+    public Dht index() {
+        Dht d = new Dht(10,10);
+        return d;
     }
-
 }
