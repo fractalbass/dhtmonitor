@@ -8,7 +8,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.ComponentScan;
 
 
-@ComponentScan({"com.phg.dhtmonitor.controller"})
+@ComponentScan({"com.phg.dhtmonitor.controller",
+                "com.phg.dhtmonitor.service",
+                "com.phg.dhtmonitor.dao"})
 @SpringBootApplication
 public class DhtMonitorApplication {
 

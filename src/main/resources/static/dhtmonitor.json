@@ -1,0 +1,82 @@
+{
+  "swaggerVersion": "2.0",
+  "basePath": "/dhtmonitor",
+  "apis": [
+    {
+      "path": "/temperature/{temperature}/humidity/{humidity}",
+      "operations": [
+        {
+          "method": "POST",
+          "summary": "Save a reading",
+          "type": "string",
+          "nickname": "Save DHT",
+          "parameters": [
+            {
+              "name": "temperature",
+              "description": "The temperature of the reading",
+              "required": true,
+              "type": "string",
+              "paramType": "path"
+            },
+            {
+              "name": "humidity",
+              "description": "The humidity of the reading",
+              "required": true,
+              "type": "string",
+              "paramType": "path"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/readings/count/{count}",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "Return n number of readings",
+          "type": "dhts",
+          "nickname": "Return n readings.",
+          "parameters": [
+            {
+              "name": "count",
+              "description": "The number of readings to return.",
+              "required": true,
+              "type": "string",
+              "paramType": "path"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "definitions": {
+    "dht": {
+      "required": [
+        "temperature",
+        "humidity",
+        "serverts"
+      ],
+      "properties": {
+        "temperature": {
+          "type": "float",
+          "format": "int64"
+        },
+        "humidity": {
+          "type": "float",
+          "format": "int64"
+        },
+        "serverts": {
+          "type": "int",
+          "format": "int64"
+        }
+      }
+    },
+    "dhts": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/dht"
+      }
+    }
+  }
+}

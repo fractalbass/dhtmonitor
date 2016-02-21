@@ -50,4 +50,10 @@ Stuff I did to make this work.
 6.  Setup a github repo, and push the code to the repo
 7.  Fire up an aws instance and install java and jenkins (see https://blogs.aws.amazon.com/application-management/post/Tx32RHFZHXY6ME1/Set-up-a-build-pipeline-with-Jenkins-and-Amazon-ECS)
 8.  Confirm that jenkins is running on port 8080 in aws...
-
+9.  Configure Jenkins to pull from Git, and that the build (gradle) works.
+10. Add endpoints to app and confirm that I can test them with Spock.
+11.  Add Service and DAO to springboot app.
+12.  Get tests workign with mocks for DAOs.
+13.  Write DAOs so that they work locally.
+14.  Add MySql support (running locally)
+15.  Add swagger.  (Swagger docroot is at http://localhost:8888/dhtmonitor/index.html

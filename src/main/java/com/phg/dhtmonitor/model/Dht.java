@@ -15,6 +15,12 @@ public class Dht {
         this.temperature = temp;
     }
 
+    public Dht(float temp, float hmdt, long ts) {
+        this.timestamp = ts;
+        this.humidity = hmdt;
+        this.temperature = temp;
+    }
+
     public float getHumidity() {
         return humidity;
     }
