@@ -1,5 +1,6 @@
 package com.phg.dhtmonitor;
 
+import org.springframework.boot.actuate.system.ApplicationPidFileWriter;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.util.Arrays;
@@ -15,8 +16,10 @@ import org.springframework.context.annotation.ComponentScan;
 public class DhtMonitorApplication {
 
     public static void main(String[] args) {
-        ApplicationContext ctx = SpringApplication.run(DhtMonitorApplication.class, args);
+        SpringApplication sa = new SpringApplication(DhtMonitorApplication.class);
+        sa.addListeners(new ApplicationPidFileWriter("dhtmonitor.pid"));
 
+        ApplicationContext ctx = sa.run(args);
         System.out.println("Let's inspect the beans provided by Spring Boot:");
 
         String[] beanNames = ctx.getBeanDefinitionNames();
