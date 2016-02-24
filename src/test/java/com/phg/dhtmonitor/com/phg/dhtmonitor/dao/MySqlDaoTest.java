@@ -3,6 +3,7 @@ package com.phg.dhtmonitor.com.phg.dhtmonitor.dao;
 import com.phg.dhtmonitor.dao.MySqlDao;
 import com.phg.dhtmonitor.model.Dht;
 import org.junit.Test;
+import org.junit.Ignore;
 import static org.junit.Assert.*;
 
 /**
