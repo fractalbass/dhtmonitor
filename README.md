@@ -57,3 +57,5 @@ Stuff I did to make this work.
 13.  Write DAOs so that they work locally.
 14.  Add MySql support (running locally)
 15.  Add swagger.  (Swagger docroot is at http://localhost:8888/dhtmonitor/index.html
+16.  Install artifactory.
+17.  Create post-receive hook for git.
