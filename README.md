@@ -58,5 +58,5 @@ Stuff I did to make this work.
 14.  Add MySql support (running locally)
 15.  Add swagger.  (Swagger docroot is at http://localhost:8888/dhtmonitor/index.html
 16.  Install artifactory.
-17.  Create post-receive hook for git.
+17.  Create post-receive hook for git - now trying to implement this thing in GIT rather than locally.
 18.  Removed a MySQL test.  (This is a useless comment, but I put it here to test the build.)
