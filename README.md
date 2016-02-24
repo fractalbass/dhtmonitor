@@ -12,8 +12,8 @@ Group Inc.  The purpose of this application is to provide a near-real-time monit
  
  Please refer to the following diagram for a general overview of the project:
  
- http://www.gliffy.com/go/publish/image/9944981/L.png
- 
+https://www.dropbox.com/s/3z99rn7j1x5av12/heat_temp_monitor%20v10.png?dl=0 
+
  Generally, the project will attempt to following these guidelines where ever possible (and practical.)
 
 1.  Use a TDD based approach as much as possible.
@@ -57,3 +57,6 @@ Stuff I did to make this work.
 13.  Write DAOs so that they work locally.
 14.  Add MySql support (running locally)
 15.  Add swagger.  (Swagger docroot is at http://localhost:8888/dhtmonitor/index.html
+16.  Install artifactory.
+17.  Create post-receive hook for git - now trying to implement this thing in GIT rather than locally.
+18.  Removed a MySQL test.  (This is a useless comment, but I put it here to test the build.)
