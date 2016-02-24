@@ -12,8 +12,8 @@ Group Inc.  The purpose of this application is to provide a near-real-time monit
  
  Please refer to the following diagram for a general overview of the project:
  
- http://www.gliffy.com/go/publish/image/9944981/L.png
- 
+https://www.dropbox.com/s/3z99rn7j1x5av12/heat_temp_monitor%20v10.png?dl=0 
+
  Generally, the project will attempt to following these guidelines where ever possible (and practical.)
 
 1.  Use a TDD based approach as much as possible.
