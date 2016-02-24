@@ -10,6 +10,7 @@ import static org.junit.Assert.*;
  */
 public class MySqlDaoTest {
 
+    @Ignore
     @Test
     public void databaseTest() {
         MySqlDao msd = new MySqlDao();
