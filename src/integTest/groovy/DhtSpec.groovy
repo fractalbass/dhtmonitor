@@ -27,7 +27,7 @@ class DhtSpec extends Specification {
         expect:
         def client = new RESTClient("http://localhost:8888/dhtmonitor")
         def resp = client.post(path : "/dhtmonitor/temperature/10/humidity/10")
-        assert(resp.status==200)
+        assert(resp.status==201)
     }
 
     // you should be able to get the last N points
