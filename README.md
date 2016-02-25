@@ -42,6 +42,7 @@ Jenkins on AWS
 =====
 
 Stuff I did to make this work.
+
 1.  Install java and intellij on my mac
 2.  Install Gradle on my mac
 3.  Install lazybones on my mac
@@ -60,3 +61,8 @@ Stuff I did to make this work.
 16.  Install artifactory.
 17.  Create post-receive hook for git - now trying to implement this thing in GIT rather than locally.
 18.  Removed a MySQL test.  (This is a useless comment, but I put it here to test the build.)
+19.  Set up GIT so that when code is checked in, a webhook message is sent to jenkins to trigger a build.
+20.  Set up Jenkins so that when it receives a webhook message from git, it compiles the code, runs tests and if everything is "green" it pushes a build to artifactory
+21.  Configure my AWS app server instance with a shell script that can pull down the latest app code.
+22.  Update the code on the raspberry pi so that it sends not only to beetbotte, but also to the AWS app running in 21 above.
+23.  Discover a bug in the code that is resulting in only integer values for the DHT22 being recorded in the database.  This appears to be related to the springboot app because I can recreate the issue through the swagger interface.  Time to write a test.
