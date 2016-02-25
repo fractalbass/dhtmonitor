@@ -4,6 +4,8 @@ import com.phg.dhtmonitor.model.*;
 import com.phg.dhtmonitor.service.DhtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -23,9 +25,9 @@ public class DHTController {
     }
 
     @RequestMapping(value="/temperature/{temperature}/humidity/{humidity}", method=RequestMethod.POST)
-    public String dhtPost( @PathVariable String temperature, @PathVariable String humidity) {
+    public ResponseEntity<?> dhtPost(@PathVariable String temperature, @PathVariable String humidity) {
         dhtService.SaveDHT(Float.parseFloat(temperature), Float.parseFloat(humidity));
-        return "OK";
+        return new ResponseEntity<>(null, HttpStatus.CREATED);
     }
 
     @RequestMapping(value="/readings/seconds/{seconds}", method=RequestMethod.GET)
