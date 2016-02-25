@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.phg.dhtmonitor.model.modeltest" tests="1" skipped="0" failures="0" errors="0" timestamp="2016-02-24T16:09:46" hostname="crp10472m" time="0.002">
+<testsuite name="com.phg.dhtmonitor.model.modeltest" tests="1" skipped="0" failures="0" errors="0" timestamp="2016-02-25T00:02:18" hostname="Miles-2015-Mac-Book-Pro.local" time="0.001">
   <properties/>
-  <testcase name="dhtTest" classname="com.phg.dhtmonitor.model.modeltest" time="0.002"/>
+  <testcase name="dhtTest" classname="com.phg.dhtmonitor.model.modeltest" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

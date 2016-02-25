@@ -17,7 +17,7 @@ public class MySqlDao {
 
     //  Database credentials
     static final String USER = "root";
-    static final String PASS = "p@55w0^d";
+    static final String PASS = "Jazz4Bass!";
 
 
     private Statement stmt = null;
