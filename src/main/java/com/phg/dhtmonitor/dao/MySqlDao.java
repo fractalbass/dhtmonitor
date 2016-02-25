@@ -71,7 +71,8 @@ public class MySqlDao {
                 i++;
             }
         } catch(Exception exp) {
-            System.out.println("Error getting data.");
+            System.out.println("Error getting data." + exp.toString() + ": " + exp.getMessage());
+            
         } finally {
             try {
                 conn.close();
