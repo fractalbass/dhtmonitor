@@ -39,6 +39,8 @@ def run():
           temp_resource.write(temperature)
           #Send humidity to Beebotte
           humid_resource.write(humidity)
+          #Send it all to aws
+          sendAWS(temperature, humidity)
           Blink(int(iterations),float(speed))
 
         except Exception as e:
@@ -56,5 +58,15 @@ def Blink(numTimes, speed):
         GPIO.output(11, False) ## Switch off GPIO pin 7
         time.sleep(speed) ## Wait
     GPIO.cleanup()
+
+def sendAWS(temperature, humidity):
+   try:
+     headers = {"Content-type": "application/x-www-form-urlencoded", "Accept": "text/plain"}
+     conn = httplib.HTTPConnection("54.172.123.149:8888")
+     conn.request("POST", "/dhtmonitor/temperature/{0}/humidity/{1}".format(temperature, humidity), "", headers)
+     response = conn.getresponse()
+     print "AWS Server Response {0} {1}".format(response.status, response.reason)
+   except Exception, e:
+      print e
 
 run()

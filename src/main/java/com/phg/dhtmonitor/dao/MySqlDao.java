@@ -63,7 +63,7 @@ public class MySqlDao {
 
         try {
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery( "SELECT temperature, humidity, serverts from dhtmonitor.dht order by id;");
+            ResultSet rs = stmt.executeQuery( "SELECT temperature, humidity, serverts from dhtmonitor.dht order by id desc;");
             int i=0;
             while ( (rs.next()) && (i<count) ) {
                 Dht dht = new Dht(rs.getFloat(1), rs.getFloat(2), rs.getLong(3));
