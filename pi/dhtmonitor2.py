@@ -11,7 +11,7 @@ from beebotte import *
 import datetime
 import RPi.GPIO as GPIO ## Import GPIO Library
 import time ## Import 'time' library.  Allows us to use 'sleep'
-
+GPIO.cleanup()
 ### Replace API_KEY and SECRET_KEY with those of your account
 bbt = BBT('a2d79fbe39c3c231a7b2b84ffb105049', '7211c45499bf9cb6819b1d8a9776fc61e49e0fc9ec66ddaf2b6371e4571d49c7')
  
@@ -28,7 +28,6 @@ iterations = 445
 speed = 1
 
 def run():
-    GPIO.cleanup()
     ts = time.time()
     st = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
     humidity, temperature = Adafruit_DHT.read_retry( Adafruit_DHT.DHT22, pin )
