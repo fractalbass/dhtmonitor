@@ -11,7 +11,7 @@ from beebotte import *
 import datetime
 import RPi.GPIO as GPIO ## Import GPIO Library
 import time ## Import 'time' library.  Allows us to use 'sleep'
-
+GPIO.cleanup()
 ### Replace API_KEY and SECRET_KEY with those of your account
 bbt = BBT('a2d79fbe39c3c231a7b2b84ffb105049', '7211c45499bf9cb6819b1d8a9776fc61e49e0fc9ec66ddaf2b6371e4571d49c7')
  
@@ -28,7 +28,6 @@ iterations = 445
 speed = 1
 
 def run():
-    GPIO.cleanup()
     ts = time.time()
     st = datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S')
     humidity, temperature = Adafruit_DHT.read_retry( Adafruit_DHT.DHT22, pin )
@@ -39,6 +38,8 @@ def run():
           temp_resource.write(temperature)
           #Send humidity to Beebotte
           humid_resource.write(humidity)
+          #Send it all to aws
+          sendAWS(temperature, humidity)
           Blink(int(iterations),float(speed))
 
         except Exception as e:
@@ -56,5 +57,15 @@ def Blink(numTimes, speed):
         GPIO.output(11, False) ## Switch off GPIO pin 7
         time.sleep(speed) ## Wait
     GPIO.cleanup()
+
+def sendAWS(temperature, humidity):
+   try:
+     headers = {"Content-type": "application/x-www-form-urlencoded", "Accept": "text/plain"}
+     conn = httplib.HTTPConnection("54.172.123.149:8888")
+     conn.request("POST", "/dhtmonitor/temperature/{0}/humidity/{1}".format(temperature, humidity), "", headers)
+     response = conn.getresponse()
+     print "AWS Server Response {0} {1}".format(response.status, response.reason)
+   except Exception, e:
+      print e
 
 run()

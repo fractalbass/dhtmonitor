@@ -24,10 +24,10 @@ public class DHTController {
         return "hello";
     }
 
-    @RequestMapping(value="/temperature/{temperature}/humidity/{humidity}", method=RequestMethod.POST)
+    @RequestMapping(value="/temperature/{temperature}/humidity/{humidity:.+}", method=RequestMethod.POST)
     public ResponseEntity<?> dhtPost(@PathVariable String temperature, @PathVariable String humidity) {
         dhtService.SaveDHT(Float.parseFloat(temperature), Float.parseFloat(humidity));
-        return new ResponseEntity<>(null, HttpStatus.CREATED);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @RequestMapping(value="/readings/seconds/{seconds}", method=RequestMethod.GET)
@@ -37,8 +37,8 @@ public class DHTController {
     }
 
     @RequestMapping(value="/readings/count/{count}", method=RequestMethod.GET)
-    public ArrayList<Dht> dhtReadings(@PathVariable String count) {
-        ArrayList<Dht> dhts = dhtService.getLastByCount(Integer.parseInt(count));
+    public ArrayList<Dht> dhtReadings(@PathVariable int count) {
+        ArrayList<Dht> dhts = dhtService.getLastByCount(count);
         return dhts;
     }
 

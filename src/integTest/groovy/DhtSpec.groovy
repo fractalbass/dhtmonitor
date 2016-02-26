@@ -5,12 +5,15 @@ import org.springframework.boot.test.IntegrationTest
 import org.springframework.boot.test.SpringApplicationContextLoader
 import org.springframework.test.context.ContextConfiguration
 import org.springframework.test.context.web.WebAppConfiguration
+import spock.lang.Ignore
 import spock.lang.Specification
 
 @ContextConfiguration(loader = SpringApplicationContextLoader, classes = DhtMonitorApplication)
 @WebAppConfiguration
 @IntegrationTest
 class DhtSpec extends Specification {
+
+
 
     @Value('${local.server.port}')
     int port;
@@ -39,10 +42,23 @@ class DhtSpec extends Specification {
     }
 
     // you should be able to get all points going back N seconds
-    def "you should be able to get all points going back N seconds"() {
+    def "you should be able to get all points going back N readings"() {
         expect:
         def client = new RESTClient("http://localhost:8888/dhtmonitor")
         def resp = client.get(path : "/dhtmonitor/readings/count/5")
         assert(resp.status==200)
+    }
+
+    @Ignore
+    // Will need to figure out a better way to mock this test for CI.
+    def "you should be able to save a point with digits."() {
+        expect:
+        def client = new RESTClient("http://localhost:8888/dhtmonitor")
+        def resp = client.post(path : "/dhtmonitor/temperature/10.555/humidity/10.123")
+        assert(resp.status==201)
+        def resp2 = client.get(path : "/dhtmonitor/readings/count/1");
+        assert(resp2.status==200)
+        assert(resp2.responseData[0].humidity==10.123)
+        assert(resp2.responseData[0].temperature==10.555)
     }
 }
