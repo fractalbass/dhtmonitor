@@ -66,3 +66,20 @@ Stuff I did to make this work.
 21.  Configure my AWS app server instance with a shell script that can pull down the latest app code.
 22.  Update the code on the raspberry pi so that it sends not only to beetbotte, but also to the AWS app running in 21 above.
 23.  Discover a bug in the code that is resulting in only integer values for the DHT22 being recorded in the database.  This appears to be related to the springboot app because I can recreate the issue through the swagger interface.  Time to write a test.
+
+
+====
+
+ESP8266 Notes:
+
+In order to get the ESP8266 to work, I followed these steps.
+
+1.  Make sure you have an ESP8266, and not some other old wireless module.
+2.  Wire it to a USB FTDI modules, and make sure that you get the wiring right.  Specifically, the GIO pin should NOT be wired to VCC.  This acts as a reset for the module.
+  This site was particularly helpful.  http://www.martyncurrey.com/arduino-esp8266/  I used an FTDI module that had an onboard 3.3v VCC.  Make sure not to use 5V on the ESP8266
+  I was able to connect to the 8266 using coolterm with COM/Serial settings of 115200,8,N,1.  This document tells the commands:  http://www.pridopia.co.uk/pi-doc/ESP8266ATCommandsSet.pdf
+3.  Flash the firmware.
+  A.  Download the code here:  http://bbs.espressif.com/viewtopic.php?f=57&t=433
+  B.  
+
+
