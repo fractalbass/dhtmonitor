@@ -1,6 +1,7 @@
 package com.phg.dhtmonitor.dao;
 
 import com.phg.dhtmonitor.model.Dht;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.sql.*;
@@ -13,11 +14,15 @@ import java.util.ArrayList;
 public class MySqlDao {
 
     static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    static final String DB_URL = "jdbc:mysql://localhost/dhtmonitor";
+    @Value("${com.phg.jdbc.url}")
+    public String DB_URL;  // = "jdbc:mysql://localhost/dhtmonitor";
 
     //  Database credentials
-    static final String USER = "root";
-    static final String PASS = "Jazz4Bass!";
+    @Value("${com.phg.jdbc.username}")
+    public String USER; // = "root";
+
+    @Value("${com.phg.jdbc.password}")
+    public String PASS; // = "Jazz4Bass!";
 
 
     private Statement stmt = null;

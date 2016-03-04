@@ -17,7 +17,7 @@ bbt = BBT('a2d79fbe39c3c231a7b2b84ffb105049', '7211c45499bf9cb6819b1d8a9776fc61e
  
 period = 60 ## Sensor data reporting period (1 minute)
 pin = 4 ## Assuming the DHT11 sensor is connected to GPIO pin number 4
-
+webapp = "40.76.39.4:8888"
 GPIO.setmode(GPIO.BOARD) ## Use BOARD pin numbering
 GPIO.setup(11, GPIO.OUT) ## Setup GPIO pin 11 to OUT
 
@@ -39,7 +39,7 @@ def run():
           #Send humidity to Beebotte
           humid_resource.write(humidity)
           #Send it all to aws
-          sendAWS(temperature, humidity)
+          sendWeb(temperature, humidity)
           Blink(int(iterations),float(speed))
 
         except Exception as e:
@@ -58,10 +58,10 @@ def Blink(numTimes, speed):
         time.sleep(speed) ## Wait
     GPIO.cleanup()
 
-def sendAWS(temperature, humidity):
+def sendWeb(temperature, humidity):
    try:
      headers = {"Content-type": "application/x-www-form-urlencoded", "Accept": "text/plain"}
-     conn = httplib.HTTPConnection("54.172.123.149:8888")
+     conn = httplib.HTTPConnection(webApp)
      conn.request("POST", "/dhtmonitor/temperature/{0}/humidity/{1}".format(temperature, humidity), "", headers)
      response = conn.getresponse()
      print "AWS Server Response {0} {1}".format(response.status, response.reason)

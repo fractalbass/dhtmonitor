@@ -80,6 +80,6 @@ In order to get the ESP8266 to work, I followed these steps.
   I was able to connect to the 8266 using coolterm with COM/Serial settings of 115200,8,N,1.  This document tells the commands:  http://www.pridopia.co.uk/pi-doc/ESP8266ATCommandsSet.pdf
 3.  Flash the firmware.
   A.  Download the code here:  http://bbs.espressif.com/viewtopic.php?f=57&t=433
-  B.  
+  B.
 
 
