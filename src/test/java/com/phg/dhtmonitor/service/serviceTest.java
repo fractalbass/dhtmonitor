@@ -28,9 +28,10 @@ public class serviceTest {
     @Test
     public void testServicePut() {
         MySqlDao mockDao = mock(MySqlDao.class);
+        when(mockDao.saveMeasurement(any(Measurement.class))).thenReturn(true);
         when(mockDao.saveDht(any(Dht.class))).thenReturn(true);
         dhtService.setDao(mockDao);
-        assertTrue(dhtService.SaveDHT(10, 10));
+        assertTrue(dhtService.SaveDHT("sensor1", 10, 10));
     }
 
     @Test
@@ -38,7 +39,7 @@ public class serviceTest {
         MySqlDao mockDao = mock(MySqlDao.class);
         when(mockDao.getLastByCount(anyInt())).thenReturn(getMockData());
         dhtService.setDao(mockDao);
-        assertTrue(dhtService.getLastByCount(5).size()==5);
+        assertTrue(dhtService.getLastByCount(6).size()==6);
     }
 
     @Test
@@ -46,17 +47,18 @@ public class serviceTest {
         MySqlDao mockDao = mock(MySqlDao.class);
         when(mockDao.getLastBySeconds(anyInt())).thenReturn(getMockData());
         dhtService.setDao(mockDao);
-        assertTrue(dhtService.getLastBySeconds(60).size()==5);
+        assertTrue(dhtService.getLastBySeconds(60).size()==6);
 
     }
 
-    private ArrayList<Dht> getMockData() {
-        ArrayList<Dht> l = new ArrayList<>();
-        l.add(new Dht(10,10));
-        l.add(new Dht(20,20));
-        l.add(new Dht(30,30));
-        l.add(new Dht(40,40));
-        l.add(new Dht(50,50));
+    private ArrayList<Measurement> getMockData() {
+        ArrayList<Measurement> l = new ArrayList<>();
+        l.add(new Measurement("Server1", "temperature",10));
+        l.add(new Measurement("Server1", "humidity", 20));
+        l.add(new Measurement("Server1", "temperature", 30));
+        l.add(new Measurement("Server1", "humidity", 40));
+        l.add(new Measurement("Server1", "temperature", 50));
+        l.add(new Measurement("Server1", "humidity", 50));
         return l;
 
     }

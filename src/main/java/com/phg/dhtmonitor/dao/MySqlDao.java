@@ -1,6 +1,7 @@
 package com.phg.dhtmonitor.dao;
 
 import com.phg.dhtmonitor.model.Dht;
+import com.phg.dhtmonitor.model.Measurement;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -62,17 +63,39 @@ public class MySqlDao {
         return success;
     }
 
-    public ArrayList<Dht> getLastByCount(int count){
-        ArrayList<Dht> d = new ArrayList<>();
+    public boolean saveMeasurement(Measurement measurement) {
+        boolean success = false;
+        try {
+            Connection conn = getConnection();
+            PreparedStatement preparedStmt = conn.prepareStatement("insert into dhtmonitor.measurement (sensor, attribute, val, serverts) values (?,?,?,?)");
+            preparedStmt.setString(1, measurement.getSensor());
+            preparedStmt.setString(2, measurement.getAttribute());
+            preparedStmt.setFloat(3, measurement.getVal());
+            preparedStmt.setLong(4, measurement.getTimestamp());
+            preparedStmt.execute();
+            conn.close();
+            success = true;
+        }
+        catch (Exception e)
+        {
+            System.err.println("Got an exception!");
+            System.err.println(e.getMessage());
+        }
+        return success;
+    }
+
+    public ArrayList<Measurement> getLastByCount(int count){
+        ArrayList<Measurement> measurements = new ArrayList<>();
         Connection conn = getConnection();
 
         try {
             Statement stmt = conn.createStatement();
-            ResultSet rs = stmt.executeQuery( "SELECT temperature, humidity, serverts from dhtmonitor.dht order by id desc;");
+            PreparedStatement ps = conn.prepareStatement("SELECT sensor, attribute, val, severts from dhtmonitor.measurements order by id desc");
+            ResultSet rs = ps.executeQuery();
             int i=0;
             while ( (rs.next()) && (i<count) ) {
-                Dht dht = new Dht(rs.getFloat(1), rs.getFloat(2), rs.getLong(3));
-                d.add(dht);
+                Measurement m = new Measurement(rs.getString(1), rs.getString(2), rs.getFloat(3), rs.getLong(3));
+                measurements.add(m);
                 i++;
             }
         } catch(Exception exp) {
@@ -85,12 +108,47 @@ public class MySqlDao {
                 System.out.println("Error closing database connection.");
             }
         }
-        return d;
+        return measurements;
 
     }
 
-    public ArrayList<Dht> getLastBySeconds(int seconds) {
-        ArrayList<Dht> d = new ArrayList<>();
+    public ArrayList<Measurement> getLastByCountAndServer(String server, int count){
+        ArrayList<Measurement> measurements = new ArrayList<>();
+        Connection conn = getConnection();
+
+        try {
+            Statement stmt = conn.createStatement();
+            PreparedStatement ps = conn.prepareStatement("SELECT sensor, attribute, val, severts from where sensor like {?} dhtmonitor.measurements order by id desc");
+            ps.setString(1, server);
+            ResultSet rs = ps.executeQuery();
+            int i=0;
+            while ( (rs.next()) && (i<count) ) {
+                Measurement m = new Measurement(rs.getString(1), rs.getString(2), rs.getFloat(3), rs.getLong(3));
+                measurements.add(m);
+                i++;
+            }
+        } catch(Exception exp) {
+            System.out.println("Error getting data." + exp.toString() + ": " + exp.getMessage());
+
+        } finally {
+            try {
+                conn.close();
+            } catch (Exception exp) {
+                System.out.println("Error closing database connection.");
+            }
+        }
+        return measurements;
+
+    }
+
+    public ArrayList<Measurement> getLastBySeconds(int seconds) {
+        ArrayList<Measurement> d = new ArrayList<>();
+        //  Query the db
+        return d;
+    }
+
+    public ArrayList<Measurement> getLastBySecondsandServer(String server, int seconds) {
+        ArrayList<Measurement> d = new ArrayList<>();
         //  Query the db
         return d;
     }
