@@ -18,4 +18,4 @@ And this blog for a detailed look at what I have been doing.
 
 http://iotuncensored.blogspot.com/
 
-March 5, 2016
+March 5, 2016.
