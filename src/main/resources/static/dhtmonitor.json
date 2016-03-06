@@ -3,7 +3,7 @@
   "basePath": "/dhtmonitor",
   "apis": [
     {
-      "path": "/temperature/{temperature}/humidity/{humidity}",
+      "path": "/temperature/{temperature}/humidity/{humidity}/sensor/{sensor}",
       "operations": [
         {
           "method": "POST",
@@ -11,6 +11,12 @@
           "type": "string",
           "nickname": "Save DHT",
           "parameters": [
+            { "name": "sensor",
+              "description": "The device reporting the reading",
+              "required": true,
+              "type": "string",
+              "paramType": "path"
+            },
             {
               "name": "temperature",
               "description": "The temperature of the reading",
@@ -21,6 +27,39 @@
             {
               "name": "humidity",
               "description": "The humidity of the reading",
+              "required": true,
+              "type": "string",
+              "paramType": "path"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "path": "/sensor/{sensor}/attribute/{attribute}/value/{value}",
+      "operations": [
+        {
+          "method": "POST",
+          "summary": "Save a measurement",
+          "type": "string",
+          "nickname": "Save Measurement",
+          "parameters": [
+            { "name": "sensor",
+              "description": "The device reporting the reading",
+              "required": true,
+              "type": "string",
+              "paramType": "path"
+            },
+            {
+              "name": "attribute",
+              "description": "The attribute being measured",
+              "required": true,
+              "type": "string",
+              "paramType": "path"
+            },
+            {
+              "name": "value",
+              "description": "The measurement",
               "required": true,
               "type": "string",
               "paramType": "path"
