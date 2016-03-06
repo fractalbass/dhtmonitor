@@ -62,7 +62,7 @@ def sendWeb(temperature, humidity):
    try:
      headers = {"Content-type": "application/x-www-form-urlencoded", "Accept": "text/plain"}
      conn = httplib.HTTPConnection(webApp)
-     conn.request("POST", "/dhtmonitor/temperature/{0}/humidity/{1}".format(temperature, humidity), "", headers)
+     conn.request("POST", "/dhtmonitor/temperature/{0}/humidity/{1}/server/musicroom".format(temperature, humidity), "", headers)
      response = conn.getresponse()
      print "AWS Server Response {0} {1}".format(response.status, response.reason)
    except Exception, e:
