@@ -90,11 +90,11 @@ public class MySqlDao {
 
         try {
             Statement stmt = conn.createStatement();
-            PreparedStatement ps = conn.prepareStatement("SELECT sensor, attribute, val, severts from dhtmonitor.measurements order by id desc");
+            PreparedStatement ps = conn.prepareStatement("SELECT sensor, attribute, val, serverts from dhtmonitor.measurement order by id desc");
             ResultSet rs = ps.executeQuery();
             int i=0;
             while ( (rs.next()) && (i<count) ) {
-                Measurement m = new Measurement(rs.getString(1), rs.getString(2), rs.getFloat(3), rs.getLong(3));
+                Measurement m = new Measurement(rs.getString(1), rs.getString(2), rs.getFloat(3), rs.getLong(4));
                 measurements.add(m);
                 i++;
             }
@@ -118,12 +118,12 @@ public class MySqlDao {
 
         try {
             Statement stmt = conn.createStatement();
-            PreparedStatement ps = conn.prepareStatement("SELECT sensor, attribute, val, severts from where sensor like {?} dhtmonitor.measurements order by id desc");
+            PreparedStatement ps = conn.prepareStatement("SELECT sensor, attribute, val, serverts from where sensor like {?} dhtmonitor.measurement order by id desc");
             ps.setString(1, server);
             ResultSet rs = ps.executeQuery();
             int i=0;
             while ( (rs.next()) && (i<count) ) {
-                Measurement m = new Measurement(rs.getString(1), rs.getString(2), rs.getFloat(3), rs.getLong(3));
+                Measurement m = new Measurement(rs.getString(1), rs.getString(2), rs.getFloat(3), rs.getLong(4));
                 measurements.add(m);
                 i++;
             }

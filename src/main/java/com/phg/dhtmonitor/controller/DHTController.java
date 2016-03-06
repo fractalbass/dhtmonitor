@@ -30,6 +30,13 @@ public class DHTController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
+    @RequestMapping(value="/sensor/{sensor}/attribute/{attribute}/value/{value:.+}", method=RequestMethod.POST)
+    public ResponseEntity<?> dhtMeasurementPost(@PathVariable String value, @PathVariable String attribute, @PathVariable String sensor) {
+        dhtService.SaveValue(sensor, attribute, Float.parseFloat(value));
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
+
+
     @RequestMapping(value="/readings/seconds/{seconds}", method=RequestMethod.GET)
     public ArrayList<Measurement> dhtSeconds(@PathVariable String seconds) {
         ArrayList<Measurement> dhts = dhtService.getLastBySeconds(Integer.parseInt(seconds));

@@ -57,7 +57,7 @@ public class DhtService {
     }
 
     public ArrayList<Measurement> getLastByCountAndSensor(String sensor, int count) {
-        return mySqlDao.getLastByCount(count);
+        return mySqlDao.getLastByCountAndServer(sensor, count);
     }
 
     public ArrayList<Measurement> getLastBySecondsAndSensor(String sensor, int seconds) {
