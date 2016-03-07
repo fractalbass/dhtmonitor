@@ -60,6 +60,7 @@ def run():
 
 def sendWeb(webapp, monitorName, temperature, humidity):
    try:
+     print "Send request to {0} monitor name {1}".format(webapp, monitorName)
      headers = {"Content-type": "application/x-www-form-urlencoded", "Accept": "text/plain"}
      conn = httplib.HTTPConnection(webapp)
      conn.request("POST", "/dhtmonitor/temperature/{0}/humidity/{1}/sensor/{2}".format(temperature, humidity, monitorName), "", headers)
