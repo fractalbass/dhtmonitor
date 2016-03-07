@@ -33,7 +33,7 @@ speed = 1
 def run():
     # Turn led off.  We'll turn it back on if everything works.
     GPIO.output(11, False) ## Turn on GPIO pin 7
-    print "Arguments passed: {0:s} ".format(sys.argv[1])
+    print "Arguments passed: {0} ".format(sys.argv)
     webapp = sys.argv[1]
     monitorName = sys.argv[2]
     ts = time.time()
