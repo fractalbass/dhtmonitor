@@ -5,6 +5,7 @@
 # You can register here: http://beebotte.com/register
 ############################################################
 
+import httplib
 import time
 import Adafruit_DHT
 from beebotte import *
@@ -14,7 +15,7 @@ import time ## Import 'time' library.  Allows us to use 'sleep'
 GPIO.cleanup()
 ### Replace API_KEY and SECRET_KEY with those of your account
 bbt = BBT('a2d79fbe39c3c231a7b2b84ffb105049', '7211c45499bf9cb6819b1d8a9776fc61e49e0fc9ec66ddaf2b6371e4571d49c7')
- 
+ webapp = "dhtubuntu.eastus.cloudapp.azure.com:8888"
 period = 60 ## Sensor data reporting period (1 minute)
 pin = 4 ## Assuming the DHT11 sensor is connected to GPIO pin number 4
 webapp = "40.76.39.4:8888"
@@ -62,9 +63,9 @@ def sendWeb(temperature, humidity):
    try:
      headers = {"Content-type": "application/x-www-form-urlencoded", "Accept": "text/plain"}
      conn = httplib.HTTPConnection(webApp)
-     conn.request("POST", "/dhtmonitor/temperature/{0}/humidity/{1}/server/musicroom".format(temperature, humidity), "", headers)
+     conn.request("POST", "/dhtmonitor/temperature/{0}/humidity/{1}/sensor/musicroom".format(temperature, humidity), "", headers)
      response = conn.getresponse()
-     print "AWS Server Response {0} {1}".format(response.status, response.reason)
+     print "dhtmonitor Server Response {0} {1}".format(response.status, response.reason)
    except Exception, e:
       print e
 
