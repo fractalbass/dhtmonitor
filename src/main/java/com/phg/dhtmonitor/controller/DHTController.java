@@ -61,4 +61,16 @@ public class DHTController {
         return dhts;
     }
 
+    @RequestMapping(value="/sensors", method=RequestMethod.GET)
+    public ArrayList<String> getSensors() {
+        ArrayList<String> sensors = dhtService.getSensors();
+        return sensors;
+    }
+
+    @RequestMapping(value="/sensors/{sensor}/attributes", method=RequestMethod.GET)
+    public ArrayList<String> dhtReadingSensor(@PathVariable String sensor) {
+        ArrayList<String> attribs = dhtService.getAttributesBySensor(sensor);
+        return attribs;
+    }
+
 }

@@ -87,6 +87,39 @@
           ]
         }
       ]
+    },
+    {
+      "path": "/sensors",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "Return a list of all sensors",
+          "type": "array",
+          "items": "string",
+          "nickname": "Return n readings."
+        }
+      ]
+    },
+    {
+      "path": "/sensors/{sensor}/attributes",
+      "operations": [
+        {
+          "method": "GET",
+          "summary": "Get a list of all attributes for a given sensor.",
+          "type": "array",
+          "items": "string",
+          "nickname": "Return n readings.",
+          "parameters": [
+            {
+              "name": "sensor",
+              "description": "The name of the sensor.",
+              "required": true,
+              "type": "string",
+              "paramType": "path"
+            }
+          ]
+        }
+      ]
     }
   ],
   "definitions": {

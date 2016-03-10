@@ -141,6 +141,62 @@ public class MySqlDao {
 
     }
 
+    public ArrayList<String> getSensors(){
+        ArrayList<String> sensors = new ArrayList<>();
+        Connection conn = getConnection();
+
+        try {
+            Statement stmt = conn.createStatement();
+            PreparedStatement ps = conn.prepareStatement("SELECT distinct sensor from dhtmonitor.measurement order by sensor");
+            ResultSet rs = ps.executeQuery();
+            int i=0;
+            while ( rs.next() ) {
+                sensors.add(rs.getString(1));
+                i++;
+            }
+        } catch(Exception exp) {
+            System.out.println("Error getting unique sensors data." + exp.toString() + ": " + exp.getMessage());
+
+        } finally {
+            try {
+                conn.close();
+            } catch (Exception exp) {
+                System.out.println("Error closing database connection.");
+            }
+        }
+        return sensors;
+
+    }
+
+    public ArrayList<String> getAttributesBySensors(String sensor){
+        ArrayList<String> attribute = new ArrayList<>();
+        Connection conn = getConnection();
+
+        try {
+            Statement stmt = conn.createStatement();
+            PreparedStatement ps = conn.prepareStatement("SELECT distinct attribute from dhtmonitor.measurement where sensor like (?) order by attribute");
+            ps.setString(1, sensor);
+            ResultSet rs = ps.executeQuery();
+            int i=0;
+            while ( rs.next() ) {
+                attribute.add(rs.getString(1));
+                i++;
+            }
+        } catch(Exception exp) {
+            System.out.println("Error getting attributes for sensor data." + exp.toString() + ": " + exp.getMessage());
+
+        } finally {
+            try {
+                conn.close();
+            } catch (Exception exp) {
+
+                System.out.println("Error closing database connection.");
+            }
+        }
+        return attribute;
+
+    }
+
     public ArrayList<Measurement> getLastBySeconds(int seconds) {
         ArrayList<Measurement> d = new ArrayList<>();
         //  Query the db

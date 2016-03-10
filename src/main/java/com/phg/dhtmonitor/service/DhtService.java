@@ -47,6 +47,13 @@ public class DhtService {
         return success;
     }
 
+    public ArrayList<String> getSensors() {
+        return mySqlDao.getSensors();
+    }
+
+    public ArrayList<String> getAttributesBySensor(String sensor) {
+        return mySqlDao.getAttributesBySensors(sensor);
+    }
 
     public ArrayList<Measurement> getLastByCount(int count) {
         return mySqlDao.getLastByCount(count);

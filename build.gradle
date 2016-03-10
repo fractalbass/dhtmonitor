@@ -67,12 +67,13 @@ dependencies {
     compile "com.fasterxml.jackson.core:jackson-databind"
     compile "mysql:mysql-connector-java:5.1.6"
 
-    providedRuntime "org.springframework.boot:spring-boot-starter-tomcat"
+    //providedRuntime "org.springframework.boot:spring-boot-starter-tomcat"
 
     testCompile "org.codehaus.groovy.modules.http-builder:http-builder:0.7+"
     testCompile "net.sf.json-lib:json-lib:2.4:jdk15"
 
     testCompile "org.springframework.boot:spring-boot-starter-test"
+
     testCompile "org.spockframework:spock-core:0.7-groovy-2.0"
     testCompile "org.spockframework:spock-spring:0.7-groovy-2.0"
 }
