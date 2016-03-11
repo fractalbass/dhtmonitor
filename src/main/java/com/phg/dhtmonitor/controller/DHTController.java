@@ -7,6 +7,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import sun.management.Sensor;
 
 import java.util.ArrayList;
 
@@ -71,6 +72,12 @@ public class DHTController {
     public ArrayList<String> dhtReadingSensor(@PathVariable String sensor) {
         ArrayList<String> attribs = dhtService.getAttributesBySensor(sensor);
         return attribs;
+    }
+
+    @RequestMapping(value="/SensorGraphData/{count}", method=RequestMethod.GET)
+    public ArrayList<SensorGraphData> getGraphData(@PathVariable int count) {
+            ArrayList<SensorGraphData> sdgr = dhtService.getSensorGraphData(count);
+            return sdgr;
     }
 
 }

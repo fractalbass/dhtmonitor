@@ -2,6 +2,7 @@ package com.phg.dhtmonitor.dao;
 
 import com.phg.dhtmonitor.model.Dht;
 import com.phg.dhtmonitor.model.Measurement;
+import com.phg.dhtmonitor.model.SensorGraphData;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -194,6 +195,40 @@ public class MySqlDao {
             }
         }
         return attribute;
+
+    }
+
+    public ArrayList<Float> getLastBySensorAndAttribute(String sensor, String attribute, int count){
+        ArrayList<Float> values = new ArrayList<>();
+        Connection conn = getConnection();
+
+        try {
+            Statement stmt = conn.createStatement();
+            String psql = "SELECT val from dhtmonitor.measurement where sensor like (?) and attribute like (?) order by id desc";
+            System.out.println("Query is: " + psql + " for " + sensor + ", " + attribute);
+            PreparedStatement ps = conn.prepareStatement(psql);
+
+            ps.setString(1, sensor);
+            ps.setString(2, attribute);
+            ResultSet rs = ps.executeQuery();
+
+            for (int i=0;i<count;i++) {
+                rs.next();
+                values.add(new Float(rs.getString(1)));
+                i++;
+            }
+        } catch(Exception exp) {
+            System.out.println("Error getting attributes for sensor data." + exp.toString() + ": " + exp.getMessage());
+
+        } finally {
+            try {
+                conn.close();
+            } catch (Exception exp) {
+
+                System.out.println("Error closing database connection.");
+            }
+        }
+        return values;
 
     }
 

@@ -1,29 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>DHT Monitor Dashboard</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script>
+
+
+
+
+
+        $(function(){
+            var url = "/dhtmonitor/SensorGraphData/10";
+            $.ajax({url: url, success: function(sensor_attrs_data) {
+                sensor_attrs_data.forEach(function (sensor) {
+                    $("#main").append(sensor["sensorName"] + "<br>");
+                    sensor["attributeReadings"].forEach(function (ar) {
+                        $("#main").append("..." + ar["attributeName"] + "<br>");
+                        ar["attributeReadings"].forEach(function (r) {
+                            $("#main").append("..... " + r + "<br>");
+                        });
+                    });
+
+                });
+            }});
+        });
+
+    </script>
 </head>
 <body>
-<h1>DHT Monitor Dashboard</h1>
-This page will show a summary of the last 100 readings for each attribute on each sensor.<br>
-<br>
-Sensors:<br>
-<div id="readings"></div>
-
-<script type="application/javascript">
-
-    $( document ).ready(function() {
-
-        $.ajax({url: "/dhtmonitor/sensors", success: function(result){
-            result.forEach(function(sensor) {
-                $("#readings").append(sensor + "<br>");
-            });
-        }});
-    });
-
-</script>
+<div id="main">
+</div>
 </body>
-
 </html>
