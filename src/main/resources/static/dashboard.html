@@ -1,27 +1,55 @@
 <html>
 <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script>
 
 
 
+    $(function() {
+        google.charts.load('current', {packages: ['corechart', 'line']});
+        google.charts.setOnLoadCallback(drawCharts);
+    });
 
+    function drawCharts() {
+        var url = "/dhtmonitor/SensorGraphData/50";
+        $.ajax({url: url, success: function(sensor_attrs_data) {
+            sensor_attrs_data.forEach(function (sensor) {
+                $("#main").append(sensor["sensorName"] + "<br>");
+                sensor["attributeReadings"].forEach(function (ar) {
+                    var attributeName = ar["attributeName"];
 
-        $(function(){
-            var url = "/dhtmonitor/SensorGraphData/10";
-            $.ajax({url: url, success: function(sensor_attrs_data) {
-                sensor_attrs_data.forEach(function (sensor) {
-                    $("#main").append(sensor["sensorName"] + "<br>");
-                    sensor["attributeReadings"].forEach(function (ar) {
-                        $("#main").append("..." + ar["attributeName"] + "<br>");
-                        ar["attributeReadings"].forEach(function (r) {
-                            $("#main").append("..... " + r + "<br>");
-                        });
+                    $("#main").append("..." + attributeName + "<br>");
+                    $("#main").append("<div id=\"" + attributeName + "\"> chart <br></div>");
+                    var i=0;
+                    var chartData = [];
+                    ar["attributeReadings"].forEach(function (r) {
+                        i++;
+                        //$("#main").append("..... " + r + "<br>");
+                        chartData.push([i,r]);
                     });
+                    var data = new google.visualization.DataTable();
+                    data.addColumn('number', 'X');
+                    data.addColumn('number', attributeName);
 
-                });
-            }});
-        });
+                    data.addRows(chartData);
+                    $("#" + attributeName).append("...  " + chartData + "<br>")
+
+                    var options = {
+                        hAxis: {
+                            title: 'Time'
+                        },
+                        vAxis: {
+                            title: attributeName
+                        }
+                    };
+
+                    var chart = new google.visualization.LineChart(document.getElementById(attributeName));
+                    chart.draw(data, options);
+                    });
+            });
+        }});
+    }
 
     </script>
 </head>
