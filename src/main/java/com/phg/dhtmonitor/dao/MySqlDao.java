@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Created by milesporter on 2/21/16.
@@ -228,6 +229,7 @@ public class MySqlDao {
                 System.out.println("Error closing database connection.");
             }
         }
+        Collections.reverse(values);  //Flip the array so the most recent is last.
         return values;
 
     }
