@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.phg.dhtmonitor.model.modeltest" tests="1" skipped="0" failures="0" errors="0" timestamp="2016-03-09T13:30:19" hostname="Miles-2015-Mac-Book-Pro.local" time="0.001">
+<testsuite name="com.phg.dhtmonitor.model.modeltest" tests="2" skipped="0" failures="0" errors="0" timestamp="2016-03-12T13:09:35" hostname="Miles-2015-Mac-Book-Pro.local" time="0.128">
   <properties/>
-  <testcase name="dhtTest" classname="com.phg.dhtmonitor.model.modeltest" time="0.001"/>
-  <system-out><![CDATA[]]></system-out>
+  <testcase name="SensorGraphData" classname="com.phg.dhtmonitor.model.modeltest" time="0.128"/>
+  <testcase name="dhtTest" classname="com.phg.dhtmonitor.model.modeltest" time="0.0"/>
+  <system-out><![CDATA[[{"sensorName":"Sensor0","attributeReadings":[{"attributeName":"Attr0","attributeReadings":[10.0,20.0,30.0]},{"attributeName":"Attr1","attributeReadings":[10.0,20.0,30.0]}]},{"sensorName":"Sensor1","attributeReadings":[{"attributeName":"Attr0","attributeReadings":[10.0,20.0,30.0]},{"attributeName":"Attr1","attributeReadings":[10.0,20.0,30.0]}]},{"sensorName":"Sensor2","attributeReadings":[{"attributeName":"Attr0","attributeReadings":[10.0,20.0,30.0]},{"attributeName":"Attr1","attributeReadings":[10.0,20.0,30.0]}]}]
+]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
