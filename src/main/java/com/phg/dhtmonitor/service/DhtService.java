@@ -3,6 +3,7 @@ package com.phg.dhtmonitor.service;
 import com.phg.dhtmonitor.dao.MySqlDao;
 import com.phg.dhtmonitor.model.Dht;
 import com.phg.dhtmonitor.model.Measurement;
+import com.phg.dhtmonitor.model.SensorGraphData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -47,6 +48,13 @@ public class DhtService {
         return success;
     }
 
+    public ArrayList<String> getSensors() {
+        return mySqlDao.getSensors();
+    }
+
+    public ArrayList<String> getAttributesBySensor(String sensor) {
+        return mySqlDao.getAttributesBySensors(sensor);
+    }
 
     public ArrayList<Measurement> getLastByCount(int count) {
         return mySqlDao.getLastByCount(count);
@@ -62,5 +70,24 @@ public class DhtService {
 
     public ArrayList<Measurement> getLastBySecondsAndSensor(String sensor, int seconds) {
         return mySqlDao.getLastBySecondsandServer(sensor, seconds);
+    }
+
+    public ArrayList<SensorGraphData> getSensorGraphData(int count) {
+        ArrayList<SensorGraphData> sdgs = new ArrayList<>();
+
+
+        ArrayList<String> sensors = mySqlDao.getSensors();
+
+        for (String sensor : sensors) {
+            SensorGraphData sdg = new SensorGraphData();
+            sdg.setSensorName(sensor);
+            ArrayList<String> attributes = mySqlDao.getAttributesBySensors(sensor);
+            for (String attribute : attributes) {
+                ArrayList<Float> readings = mySqlDao.getLastBySensorAndAttribute(sensor,attribute, count);
+                sdg.addAttribute(attribute, readings);
+            }
+            sdgs.add(sdg);
+        }
+        return sdgs;
     }
 }

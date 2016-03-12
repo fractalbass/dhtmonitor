@@ -73,6 +73,7 @@ dependencies {
     testCompile "net.sf.json-lib:json-lib:2.4:jdk15"
 
     testCompile "org.springframework.boot:spring-boot-starter-test"
+
     testCompile "org.spockframework:spock-core:0.7-groovy-2.0"
     testCompile "org.spockframework:spock-spring:0.7-groovy-2.0"
 }
