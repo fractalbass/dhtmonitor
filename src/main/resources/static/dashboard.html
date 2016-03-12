@@ -15,12 +15,13 @@
         var url = "/dhtmonitor/SensorGraphData/50";
         $.ajax({url: url, success: function(sensor_attrs_data) {
             sensor_attrs_data.forEach(function (sensor) {
+                var sensorName = sensor["sensorName"];
                 $("#main").append(sensor["sensorName"] + "<br>");
                 sensor["attributeReadings"].forEach(function (ar) {
                     var attributeName = ar["attributeName"];
 
                     $("#main").append("..." + attributeName + "<br>");
-                    $("#main").append("<div id=\"" + attributeName + "\"> chart <br></div>");
+                    $("#main").append("<div id=\"" + sensorName + attributeName + "\"> chart <br></div>");
                     var i=0;
                     var chartData = [];
                     ar["attributeReadings"].forEach(function (r) {
@@ -41,10 +42,11 @@
                         },
                         vAxis: {
                             title: attributeName
-                        }
+                        },
+                        height:500
                     };
 
-                    var chart = new google.visualization.LineChart(document.getElementById(attributeName));
+                    var chart = new google.visualization.LineChart(document.getElementById(sensorName + attributeName));
                     chart.draw(data, options);
                     });
             });
