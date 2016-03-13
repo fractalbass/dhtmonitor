@@ -83,8 +83,8 @@ public class DhtService {
             sdg.setSensorName(sensor);
             ArrayList<String> attributes = mySqlDao.getAttributesBySensors(sensor);
             for (String attribute : attributes) {
-                ArrayList<Float> readings = mySqlDao.getLastBySensorAndAttribute(sensor,attribute, count);
-                sdg.addAttribute(attribute, readings);
+                ArrayList<Measurement> measurements = mySqlDao.getLastMeasurementBySensorAndAttribute(sensor,attribute, count);
+                sdg.addAttribute(attribute, measurements);
             }
             sdgs.add(sdg);
         }

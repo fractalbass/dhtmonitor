@@ -18,14 +18,14 @@ public class AttributeReadings {
 
     private String attributeName;
 
-    public ArrayList<Float> getAttributeReadings() {
-        return attributeReadings;
+    public ArrayList<Measurement> getAttributeReadings() {
+        return attributeMeasurements;
     }
 
-    public void setAttributeReadings(ArrayList<Float> attributeReadings) {
-        this.attributeReadings = attributeReadings;
+    public void setAttributeMeasurements(ArrayList<Measurement> attributeMeasurements) {
+        this.attributeMeasurements = attributeMeasurements;
     }
 
-    private ArrayList<Float> attributeReadings;
+    private ArrayList<Measurement> attributeMeasurements;
 
 }

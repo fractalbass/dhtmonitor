@@ -4,7 +4,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script>
 
-
+    var charts = [];
 
     $(function() {
         google.charts.load('current', {packages: ['corechart', 'line']});
@@ -14,49 +14,73 @@
     function drawCharts() {
         var url = "/dhtmonitor/SensorGraphData/50";
         $.ajax({url: url, success: function(sensor_attrs_data) {
-            sensor_attrs_data.forEach(function (sensor) {
-                var sensorName = sensor["sensorName"];
-                $("#main").append(sensor["sensorName"] + "<br>");
-                sensor["attributeReadings"].forEach(function (ar) {
-                    var attributeName = ar["attributeName"];
-
-                    $("#main").append("..." + attributeName + "<br>");
-                    $("#main").append("<div id=\"" + sensorName + attributeName + "\"> chart <br></div>");
-                    var i=0;
-                    var chartData = [];
-                    ar["attributeReadings"].forEach(function (r) {
-                        i++;
-                        //$("#main").append("..... " + r + "<br>");
-                        chartData.push([i,r]);
-                    });
-                    var data = new google.visualization.DataTable();
-                    data.addColumn('number', 'X');
-                    data.addColumn('number', attributeName);
-
-                    data.addRows(chartData);
-                    $("#" + attributeName).append("...  " + chartData + "<br>")
-
-                    var options = {
-                        hAxis: {
-                            title: 'Time'
-                        },
-                        vAxis: {
-                            title: attributeName
-                        },
-                        height:500
-                    };
-
-                    var chart = new google.visualization.LineChart(document.getElementById(sensorName + attributeName));
-                    chart.draw(data, options);
-                    });
-            });
+            plotData(sensor_attrs_data);
         }});
+
+
     }
+
+    function plotData(sensor_attrs_data) {
+        $("#main").empty();
+        sensor_attrs_data.forEach(function (sensor) {
+            var sensorName = sensor["sensorName"];
+
+            $("#main").append("<h2>" + sensor["sensorName"] + "</h2>");
+
+            sensor["readings"].forEach(function (ar) {
+                var attributeName = ar["attributeName"];
+
+                $("#main").append("<div id=\"" + sensorName + attributeName + "\"> chart <br></div>");
+                var i=0;
+                var chartData = [];
+                ar["attributeReadings"].forEach(function (r) {
+                    i++;
+                    //$("#main").append("..... " + r + "<br>");
+                    chartData.push([new Date(r["timestamp"]),r["val"]]);
+                });
+                console.log("Chart Data: ");
+                console.log(chartData);
+                var data = new google.visualization.DataTable();
+                data.addColumn('date', 'Time of Day');
+                data.addColumn('number', attributeName);
+
+                data.addRows(chartData);
+
+                var options = {
+                    hAxis: {
+                        title: 'Time',
+                        format: 'HH:mm',
+                        gridlines: {
+                            count: -1,
+                            units: {
+                                days: {format: ['MMM dd']},
+                                hours: {format: ['hh:mm a', 'ha']}
+                            }
+                        }
+                    },
+                    vAxis: {
+                        title: attributeName
+                    },
+                    height:500
+                };
+
+                charts[sensorName] = new google.visualization.LineChart(document.getElementById(sensorName + attributeName));
+                charts[sensorName].draw(data, options);
+            });
+        });
+    }
+
+
+
 
     </script>
 </head>
 <body>
+<h2 align="center">Miles Porter DHTMonitor Sensor Dashboard</h2>
+Most recent 25 measurements shown.<br>
 <div id="main">
+rendering...
 </div>
+<h2 align="center">Created by Miles Porter.  mporter@paintedharmony.com</h2>
 </body>
 </html>

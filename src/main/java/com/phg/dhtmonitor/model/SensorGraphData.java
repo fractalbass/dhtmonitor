@@ -21,33 +21,35 @@ import java.util.ArrayList;
 
 public class SensorGraphData {
 
-    public String getSensorName() {
-        return sensorName;
-    }
+    private String sensorName;
+
+    private ArrayList<AttributeReadings> attributeReadings;
 
     public void setSensorName(String sensorName) {
         this.sensorName = sensorName;
     }
 
-    private String sensorName;
+    public String getSensorName() {
+        return sensorName;
+    }
 
-    public ArrayList<AttributeReadings> getAttributeReadings() {
+    public ArrayList<AttributeReadings> getReadings() {
         return attributeReadings;
     }
 
-    public void setAttributeReadings(ArrayList<AttributeReadings> attributeReadings) {
-        this.attributeReadings = attributeReadings;
+    public void setMeasurements(ArrayList<AttributeReadings> readings) {
+        this.attributeReadings = readings;
     }
 
-    private ArrayList<AttributeReadings> attributeReadings;
 
-    public void addAttribute(String name, ArrayList<Float> readings) {
+
+    public void addAttribute(String name, ArrayList<Measurement> measurements) {
         if (attributeReadings==null) {
             attributeReadings = new ArrayList<>();
         }
         AttributeReadings ar = new AttributeReadings();
         ar.setAttributeName(name);
-        ar.setAttributeReadings(readings);
+        ar.setAttributeMeasurements(measurements);
         attributeReadings.add(ar);
     }
 }

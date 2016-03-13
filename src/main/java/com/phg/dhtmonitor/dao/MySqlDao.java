@@ -234,6 +234,41 @@ public class MySqlDao {
 
     }
 
+    public ArrayList<Measurement> getLastMeasurementBySensorAndAttribute(String sensor, String attribute, int count){
+        ArrayList<Measurement> measurements = new ArrayList<>();
+        Connection conn = getConnection();
+
+        try {
+            Statement stmt = conn.createStatement();
+            String psql = "SELECT val, serverts from dhtmonitor.measurement where sensor like (?) and attribute like (?) order by id desc";
+            System.out.println("Query is: " + psql + " for " + sensor + ", " + attribute);
+            PreparedStatement ps = conn.prepareStatement(psql);
+
+            ps.setString(1, sensor);
+            ps.setString(2, attribute);
+            ResultSet rs = ps.executeQuery();
+
+            for (int i=0;i<count;i++) {
+                rs.next();
+                measurements.add(new Measurement("sensor", "attribute", Float.parseFloat(rs.getString(1)), rs.getLong(2)));
+                i++;
+            }
+        } catch(Exception exp) {
+            System.out.println("Error getting attributes for sensor data." + exp.toString() + ": " + exp.getMessage());
+
+        } finally {
+            try {
+                conn.close();
+            } catch (Exception exp) {
+
+                System.out.println("Error closing database connection.");
+            }
+        }
+        Collections.reverse(measurements);  //Flip the array so the most recent is last.
+        return measurements;
+
+    }
+
     public ArrayList<Measurement> getLastBySeconds(int seconds) {
         ArrayList<Measurement> d = new ArrayList<>();
         //  Query the db
