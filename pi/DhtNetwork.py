@@ -10,13 +10,13 @@ if (os.environ.get("dhtenv") == "prod"):
     humid_resource  = Resource(bbt, 'rasberrypi', 'humidity')
 
 class DhtNetwork:
-    def sendBBT(humidity, temperature):
+    def sendBBT(self, humidity, temperature):
         temp_resource.write(temperature)
         #Send humidity to Beebotte
         humid_resource.write(humidity)
 
 
-    def sendWeb(webapp, message):
+    def sendWeb(self, webapp, message):
        try:
          print "Send request to {0} monitor name {1}".format(webapp, message)
          headers = {"Content-type": "application/x-www-form-urlencoded", "Accept": "text/plain"}
