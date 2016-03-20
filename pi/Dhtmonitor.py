@@ -13,7 +13,7 @@ def run():
     print "Arguments passed: {0} ".format(sys.argv)
     webapp = sys.argv[1]
     monitorName = sys.argv[2]
-    d = DhtmonitorApp
+    d = DhtmonitorApp.DhtmonitorApp()
     d.execute(webapp, monitorName)
 
 run()

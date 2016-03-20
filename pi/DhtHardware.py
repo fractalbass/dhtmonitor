@@ -1,7 +1,7 @@
 import datetime
 import os
 
-if os.environ.get(os.environ.get('dhtenv')=='prod'):
+if (os.environ.get("dhtenv") == "prod"):
     import RPi.GPIO as GPIO ## Import GPIO Library
     import Adafruit_DHT
 
