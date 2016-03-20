@@ -29922,3 +29922,9 @@ Unconditional classes:
 
 2016-03-13 13:59:23.669  INFO 11459 --- [           main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8888 (http)
 2016-03-13 13:59:23.671  INFO 11459 --- [           main] c.phg.dhtmonitor.DhtMonitorApplication   : Started DhtMonitorApplication in 3.69 seconds (JVM running for 4.028)
+2016-03-19 09:27:29.788  INFO 11459 --- [       Thread-4] ationConfigEmbeddedWebApplicationContext : Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@2925633e: startup date [Sun Mar 13 13:59:20 CDT 2016]; root of context hierarchy
+2016-03-19 09:27:29.886  INFO 11459 --- [       Thread-4] ationConfigEmbeddedWebApplicationContext : Closing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@be2e45a: startup date [Sun Mar 13 13:59:23 CDT 2016]; parent: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@2925633e
+2016-03-19 09:27:30.176  INFO 11459 --- [       Thread-4] o.s.c.support.DefaultLifecycleProcessor  : Stopping beans in phase 0
+2016-03-19 09:27:30.181 DEBUG 11459 --- [       Thread-4] o.s.b.a.e.jmx.EndpointMBeanExporter      : Unregistering JMX-exposed beans on shutdown
+2016-03-19 09:27:30.183 DEBUG 11459 --- [       Thread-4] o.s.b.a.e.jmx.EndpointMBeanExporter      : Unregistering JMX-exposed beans
+2016-03-19 09:27:30.185  INFO 11459 --- [       Thread-4] o.s.j.e.a.AnnotationMBeanExporter        : Unregistering JMX-exposed beans on shutdown
