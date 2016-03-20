@@ -3,7 +3,7 @@ import os
 
 
 
-if (os.environ.get("dhtenv") == "prod"):
+if (os.environ.get("dhtenv") != "dev"):
     from beebotte import *
     bbt = BBT('a2d79fbe39c3c231a7b2b84ffb105049', '7211c45499bf9cb6819b1d8a9776fc61e49e0fc9ec66ddaf2b6371e4571d49c7')
     temp_resource   = Resource(bbt, 'rasberrypi', 'temperature')
