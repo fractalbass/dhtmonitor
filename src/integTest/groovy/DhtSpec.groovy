@@ -13,11 +13,13 @@ import spock.lang.Specification
 @IntegrationTest
 class DhtSpec extends Specification {
 
-
+    //  Proper integration tests should have backend DAO calls mocked.
 
     @Value('${local.server.port}')
     int port;
 
+
+    @Ignore
     def "It should have a valid endpoint"() {
         expect:
         def client = new RESTClient("http://localhost:8888/dhtmonitor")
@@ -25,6 +27,7 @@ class DhtSpec extends Specification {
         assert(resp.status==200)
     }
 
+    @Ignore
     // you should be able to add a point
     def "you should be able to add a point"() {
         expect:
@@ -33,6 +36,7 @@ class DhtSpec extends Specification {
         assert(resp.status==201)
     }
 
+    @Ignore
     // you should be able to get the last N points
     def "you should be able to get the last N points"() {
         expect:
@@ -41,6 +45,7 @@ class DhtSpec extends Specification {
         assert(resp.status==200)
     }
 
+    @Ignore
     // you should be able to get the last N points
     def "you should be able to get the last N points for sensor x"() {
         expect:
@@ -49,6 +54,7 @@ class DhtSpec extends Specification {
         assert(resp.status==200)
     }
 
+    @Ignore
     // you should be able to get all points going back N seconds
     def "you should be able to get all points going back N readings"() {
         expect:
@@ -57,6 +63,7 @@ class DhtSpec extends Specification {
         assert(resp.status==200)
     }
 
+    @Ignore
     // you should be able to get all points going back N seconds
     def "you should be able to get all points for sensor x going back N readings"() {
         expect:
