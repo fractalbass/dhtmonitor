@@ -67,6 +67,9 @@ dependencies {
     compile "com.fasterxml.jackson.core:jackson-databind"
     compile "mysql:mysql-connector-java:5.1.6"
 
+    // https://mvnrepository.com/artifact/cglib/cglib-nodep
+    compile group: 'cglib', name: 'cglib-nodep', version: '2.2'
+
     //providedRuntime "org.springframework.boot:spring-boot-starter-tomcat"
 
     testCompile "org.codehaus.groovy.modules.http-builder:http-builder:0.7+"

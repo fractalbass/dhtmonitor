@@ -94,5 +94,6 @@
     <orderEntry type="library" name="Gradle: org.apache.tomcat.embed:tomcat-embed-el:8.0.28" level="project" />
     <orderEntry type="library" name="Gradle: org.apache.tomcat.embed:tomcat-embed-logging-juli:8.0.28" level="project" />
     <orderEntry type="library" name="Gradle: org.apache.tomcat.embed:tomcat-embed-websocket:8.0.28" level="project" />
+    <orderEntry type="library" name="Gradle: cglib:cglib-nodep:2.2" level="project" />
   </component>
 </module>
